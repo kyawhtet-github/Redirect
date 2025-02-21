@@ -2,6 +2,7 @@ window.onload = function () {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
     var appStoreUrl = "https://apps.apple.com/us/app/supermyan/id6523422437";
+    var playStoreIntentUrl = "intent://play.google.com/store/apps/details?id=com.uabfintech.supermyan&hl=en#Intent;scheme=https;package=com.android.vending;end;"; // Play Store Intent
     var playStoreUrl = "https://play.google.com/store/apps/details?id=com.uabfintech.supermyan&hl=en";
     var fallbackUrl = "https://uatmoe.uabpay.com.mm/home";
 
@@ -26,7 +27,7 @@ window.onload = function () {
         setTimeout(function () {
         if (!opened) {
             // If Play Store didn't open, show fallback button
-            createButton(`Download ${appName} for Android`, fallbackUrl, "bg-gray-600");
+            createButton("Get it on Google Play", playStoreUrl, "bg-green-600");
         }
         }, 2000); // Check after 2 seconds
         window.location = playStoreIntentUrl;
