@@ -22,16 +22,17 @@ window.onload = function () {
         createButton("Download on the App Store", appStoreUrl, "bg-blue-600");
     } else if (/android/i.test(userAgent)) {
         // Try opening Play Store
-        var iframe = document.createElement("iframe");
-        iframe.style.display = "none";
-        iframe.src = playStoreAppUrl;
-        document.body.appendChild(iframe);
-
+        var opened = false;
         setTimeout(function () {
-            document.body.removeChild(iframe);
-            // If Play Store didn't open, show Custom Download button
-            createButton("Get it on Google Play", playStoreUrl, "bg-green-600");
-        }, 2000);
+        if (!opened) {
+            // If Play Store didn't open, show fallback button
+            createButton(`Download ${appName} for Android`, fallbackUrl, "bg-gray-600");
+        }
+        }, 2000); // Check after 2 seconds
+        window.location = playStoreIntentUrl;
+        setTimeout(function () {
+            opened = true;
+        }, 100);
     } else {
         createButton("Download for Other Devices", fallbackUrl, "bg-gray-600");
     }
